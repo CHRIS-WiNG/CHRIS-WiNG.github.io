@@ -208,7 +208,18 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-23 16:00:36 / 修改时间：19:05:42" itemprop="dateCreated datePublished" datetime="2019-11-23T16:00:36+08:00">2019-11-23</time>
+              <time title="创建时间：2019-11-23 16:00:36 / 修改时间：19:43:11" itemprop="dateCreated datePublished" datetime="2019-11-23T16:00:36+08:00">2019-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
             </span>
 
           
@@ -223,20 +234,21 @@
 
       
           <p>动态数组（一维）因为其首地址与申请的内存是连续的，所以初始化与静态数组的初始化无异：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* <span class="built_in">array</span> = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line"><span class="built_in">memset</span>(<span class="built_in">array</span>, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="built_in">array</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* <span class="built_in">array</span> = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line"><span class="built_in">memset</span>(<span class="built_in">array</span>, <span class="number">0</span>, length*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
 
 <p>对于动态二维数组：  </p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** matrix = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)&#123;</span><br><span class="line">  matrix[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>matrix</code>指向了<code>matrix[i]</code>的首地址，<code>matrix[i]</code>又指向了各自行的首地址，每一行元素在内存中是连续的，但每一行之间并不是连续的，因此对二维动态数组，用  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(matrix, <span class="number">0</span>, <span class="keyword">sizeof</span>(matrix));</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(matrix, <span class="number">0</span>, length*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
 
 <p>并不适用，因为<code>memset()</code>函数是从<code>matrix</code>的首地址开始，长度为<code>sizeof(matrix)</code>个内存单元全部初始化，所以作用在二维动态数组上会报出EXC_BAD_ACCESS(访问释放掉的内存)的错误。  </p>
 <p>二维动态数组里每一行都是连续的，因此可以在对每一行开辟内存空间的同时进行初始化，如下：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** matrix = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)&#123;</span><br><span class="line">  matrix[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">  <span class="built_in">memset</span>(matrix[i],<span class="number">0</span>,<span class="keyword">sizeof</span>(matrix[i]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** matrix = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)&#123;</span><br><span class="line">  matrix[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">  <span class="built_in">memset</span>(matrix[i],<span class="number">0</span>,col*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
+<p>切记<code>memset()</code>函数中不要使用<code>sizeof(matrix[i])</code>，因为<code>sizeof()</code>函数在编译时就进行计算，所以<strong><code>sizeof()</code>不能返回动态分配的内存空间的大小</strong>。</p>
 
       
     </div>
@@ -392,7 +404,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

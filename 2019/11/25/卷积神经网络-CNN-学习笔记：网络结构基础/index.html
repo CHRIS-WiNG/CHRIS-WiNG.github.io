@@ -46,30 +46,49 @@
   };
 </script>
 
-  <meta name="description" content="A PUKer of CS">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zebin&#39;s Thinking">
-<meta property="og:url" content="https:&#x2F;&#x2F;zebin.wang&#x2F;index.html">
+  <meta name="description" content="概述卷积神经网络 (Convolutional Neural Network, CNN) 是DeepLearning中极具代表的网络结构之一，在图像处理领域取得了很大的成功，在国际标准的 ImageNet 数据集上，许多成功的模型都是基于 CNN 的。CNN 相较于传统的图像处理算法的优点之一在于，避免了对图像复杂的前期预处理过程（提取人工特征等），可以直接输入原始图像。 图像处理中，往往会将图像">
+<meta name="keywords" content="DeepLearning,CNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卷积神经网络(CNN)学习笔记：网络结构基础">
+<meta property="og:url" content="https:&#x2F;&#x2F;zebin.wang&#x2F;2019&#x2F;11&#x2F;25&#x2F;%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80&#x2F;index.html">
 <meta property="og:site_name" content="Zebin&#39;s Thinking">
-<meta property="og:description" content="A PUKer of CS">
+<meta property="og:description" content="概述卷积神经网络 (Convolutional Neural Network, CNN) 是DeepLearning中极具代表的网络结构之一，在图像处理领域取得了很大的成功，在国际标准的 ImageNet 数据集上，许多成功的模型都是基于 CNN 的。CNN 相较于传统的图像处理算法的优点之一在于，避免了对图像复杂的前期预处理过程（提取人工特征等），可以直接输入原始图像。 图像处理中，往往会将图像">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvUJ2T.md.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvUUr4.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvaNfP.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;Mvadl8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvaDmQ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;Mvarwj.gif">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;Mvagf0.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvaWlT.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvahXF.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvdCtI.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvdaNR.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;Mvd5gf.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvdjCq.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;Mvdx2V.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvwpKU.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvwFa9.png">
+<meta property="og:updated_time" content="2019-11-25T11:51:48.210Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;MvUJ2T.md.png">
 
-<link rel="canonical" href="https://zebin.wang/">
+<link rel="canonical" href="https://zebin.wang/2019/11/25/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Zebin's Thinking</title>
+  <title>卷积神经网络(CNN)学习笔记：网络结构基础 | Zebin's Thinking</title>
   
 
 
@@ -179,10 +198,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://zebin.wang/2019/11/25/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -196,8 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/25/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">卷积神经网络(CNN)学习笔记：网络结构基础</a>
+          卷积神经网络(CNN)学习笔记：网络结构基础
         </h1>
 
         <div class="post-meta">
@@ -222,7 +240,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><strong>卷积神经网络 (Convolutional Neural Network, CNN)</strong> 是DeepLearning中极具代表的网络结构之一，在图像处理领域取得了很大的成功，在国际标准的 ImageNet 数据集上，许多成功的模型都是基于 CNN 的。CNN 相较于传统的图像处理算法的优点之一在于，避免了对图像复杂的前期预处理过程（提取人工特征等），可以直接输入原始图像。</p>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><strong>卷积神经网络 (Convolutional Neural Network, CNN)</strong> 是DeepLearning中极具代表的网络结构之一，在图像处理领域取得了很大的成功，在国际标准的 ImageNet 数据集上，许多成功的模型都是基于 CNN 的。CNN 相较于传统的图像处理算法的优点之一在于，避免了对图像复杂的前期预处理过程（提取人工特征等），可以直接输入原始图像。</p>
 <p>图像处理中，往往会将图像看成是一个或多个的二维向量，如之前博文中提到的 MNIST 手写体图片就可以看做是一个 28 × 28 的二维向量（黑白图片，只有一个颜色通道；如果是 RGB 表示的彩色图片则有三个颜色通道，可表示为三张二维向量）。传统的神经网络都是采用全连接的方式，即输入层到隐藏层的神经元都是全部连接的，这样做将导致参数量巨大，使得网络训练耗时甚至难以训练，而 CNN 则通过<strong><code>局部连接</code></strong>、<strong><code>权值共享</code></strong>等方法避免这一困难，有趣的是，这些方法都是受到现代生物神经网络相关研究的启发（感兴趣可阅读以下部分）。</p>
 <p><img src="https://s2.ax1x.com/2019/11/25/MvUJ2T.md.png" alt="MvUJ2T.md.png"></p>
 <p>下面重点介绍下 CNN 中的<strong>局部连接 (Sparse Connectivity)</strong> 和<strong>权值共享 (Shared Weights)</strong> 方法，理解它们很重要。</p>
@@ -259,197 +277,40 @@
 <p><strong>LeNet-5 在 MNIST 数据集上的结果</strong></p>
 <p><img src="https://s2.ax1x.com/2019/11/25/MvwFa9.png" alt="MvwFa9.png"></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/DeepLearning/" rel="tag"># DeepLearning</a>
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zebin.wang/2019/11/23/%E5%8A%A8%E6%80%81%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王泽斌">
-      <meta itemprop="description" content="A PUKer of CS">
-    </span>
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/23/%E5%8A%A8%E6%80%81%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="next" title="动态二维数组的初始化">
+                  <i class="fa fa-chevron-left"></i> 动态二维数组的初始化
+                </a>
+            </div>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zebin's Thinking">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/23/%E5%8A%A8%E6%80%81%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/" class="post-title-link" itemprop="url">动态二维数组的初始化</a>
-        </h1>
+            <span class="post-nav-divider"></span>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-11-23 16:00:36 / 修改时间：19:43:11" itemprop="dateCreated datePublished" datetime="2019-11-23T16:00:36+08:00">2019-11-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>动态数组（一维）因为其首地址与申请的内存是连续的，所以初始化与静态数组的初始化无异：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* <span class="built_in">array</span> = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line"><span class="built_in">memset</span>(<span class="built_in">array</span>, <span class="number">0</span>, length*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
-
-<p>对于动态二维数组：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** matrix = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)&#123;</span><br><span class="line">  matrix[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>matrix</code>指向了<code>matrix[i]</code>的首地址，<code>matrix[i]</code>又指向了各自行的首地址，每一行元素在内存中是连续的，但每一行之间并不是连续的，因此对二维动态数组，用  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(matrix, <span class="number">0</span>, length*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
-
-<p>并不适用，因为<code>memset()</code>函数是从<code>matrix</code>的首地址开始，长度为<code>sizeof(matrix)</code>个内存单元全部初始化，所以作用在二维动态数组上会报出EXC_BAD_ACCESS(访问释放掉的内存)的错误。  </p>
-<p>二维动态数组里每一行都是连续的，因此可以在对每一行开辟内存空间的同时进行初始化，如下：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** matrix = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)&#123;</span><br><span class="line">  matrix[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">  <span class="built_in">memset</span>(matrix[i],<span class="number">0</span>,col*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>切记<code>memset()</code>函数中不要使用<code>sizeof(matrix[i])</code>，因为<code>sizeof()</code>函数在编译时就进行计算，所以<strong><code>sizeof()</code>不能返回动态分配的内存空间的大小</strong>。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
       </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zebin.wang/2018/10/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王泽斌">
-      <meta itemprop="description" content="A PUKer of CS">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zebin's Thinking">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/" class="post-title-link" itemprop="url">搭建博客有感</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-10-19 02:38:52" itemprop="dateCreated datePublished" datetime="2018-10-19T02:38:52+08:00">2018-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-21 19:02:35" itemprop="dateModified" datetime="2019-11-21T19:02:35+08:00">2019-11-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/Life/" itemprop="url" rel="index">
-                    <span itemprop="name">Life</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>现在是北京时间2018年10月19日02:39:30，经历了三个月磨磨蹭蹭的施工，终于开始使用了，从暑假心血来潮想建立一个独立的个人博客，到后来因为很多事情而暂时搁置了这件事，时至今日终于下定决定在自己的一亩三分田里写点东西了，这中间大约跨越了一个季度，从酷暑八月的家里，到深秋的今天。以后做事不可以再这么拖拉了。</p>
-<p>回想一下，为了搭这个博客，还是学到了很多东西的，从当初对git是一窍不通，到现在的一知半解，虽然中间踩了无数的坑，但这就是学习和修行的意义所在吧。</p>
-<p>研究生的阶段，终于有了有太多东西要学的想法，为时不晚，一步一步来吧，起码有这样的紧迫感确实是一件好事情。以后每天都要有所收获，希望每天都可以写一篇日记，不管是课堂笔记、人生心得亦或是技术分享。</p>
-<p>哎，十月中下旬的北京，俨然就是一幅初冬的模样，难怪在北京读了四年大学的室友说：“北京没有秋天”。</p>
-<p>先这样吧。</p>
-<p>澤</p>
-<p>贰零壹捌 - 深秋</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -478,6 +339,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部连接与权值共享"><span class="nav-number">2.</span> <span class="nav-text">局部连接与权值共享</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络结构"><span class="nav-number"></span> <span class="nav-text">网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积层"><span class="nav-number">1.</span> <span class="nav-text">卷积层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#池化-采样层"><span class="nav-number">2.</span> <span class="nav-text">池化 / 采样层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LeNet-5-网络详解"><span class="nav-number">3.</span> <span class="nav-text">LeNet-5 网络详解</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

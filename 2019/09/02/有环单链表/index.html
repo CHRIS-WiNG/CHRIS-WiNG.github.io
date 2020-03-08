@@ -46,30 +46,32 @@
   };
 </script>
 
-  <meta name="description" content="A PUKer of CS">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zebin&#39;s Thinking">
-<meta property="og:url" content="https:&#x2F;&#x2F;zebin.wang&#x2F;index.html">
+  <meta name="description" content="kernel：快慢指针判断是否有环 快指针一次跳两步，满指针一次跳一步，有环就意味着总会相遇，即当slow=fast时意味有环  找出环的入点 当两指针相遇后令fast=head，然后fast和slow都每一次走一步，直到再次相遇，相遇点即为环的入点  求环长 环长即为从head到入点的距离  求单链表长度 由上述已得到非环长度A，环长B，则单链表长度 = A + B  1234567891011">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有环单链表">
+<meta property="og:url" content="https:&#x2F;&#x2F;zebin.wang&#x2F;2019&#x2F;09&#x2F;02&#x2F;%E6%9C%89%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8&#x2F;index.html">
 <meta property="og:site_name" content="Zebin&#39;s Thinking">
-<meta property="og:description" content="A PUKer of CS">
+<meta property="og:description" content="kernel：快慢指针判断是否有环 快指针一次跳两步，满指针一次跳一步，有环就意味着总会相遇，即当slow=fast时意味有环  找出环的入点 当两指针相遇后令fast=head，然后fast和slow都每一次走一步，直到再次相遇，相遇点即为环的入点  求环长 环长即为从head到入点的距离  求单链表长度 由上述已得到非环长度A，环长B，则单链表长度 = A + B  1234567891011">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-08T15:11:10.378Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zebin.wang/">
+<link rel="canonical" href="https://zebin.wang/2019/09/02/%E6%9C%89%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Zebin's Thinking</title>
+  <title>有环单链表 | Zebin's Thinking</title>
   
 
 
@@ -179,224 +181,10 @@
             
 
   <div class="posts-expand">
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zebin.wang/2019/11/25/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王泽斌">
-      <meta itemprop="description" content="A PUKer of CS">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zebin's Thinking">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/25/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">卷积神经网络(CNN)学习笔记：网络结构基础</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-25 19:36:08" itemprop="dateCreated datePublished" datetime="2019-11-25T19:36:08+08:00">2019-11-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-26 16:13:10" itemprop="dateModified" datetime="2019-11-26T16:13:10+08:00">2019-11-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">DeepLearning</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DeepLearning/CV/" itemprop="url" rel="index">
-                    <span itemprop="name">CV</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
-          <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><strong>卷积神经网络 (Convolutional Neural Network, CNN)</strong> 是DeepLearning中极具代表的网络结构之一，在图像处理领域取得了很大的成功，在国际标准的 ImageNet 数据集上，许多成功的模型都是基于 CNN 的。CNN 相较于传统的图像处理算法的优点之一在于，避免了对图像复杂的前期预处理过程（提取人工特征等），可以直接输入原始图像。</p>
-<p>图像处理中，往往会将图像看成是一个或多个的二维向量，如之前博文中提到的 MNIST 手写体图片就可以看做是一个 28 × 28 的二维向量（黑白图片，只有一个颜色通道；如果是 RGB 表示的彩色图片则有三个颜色通道，可表示为三张二维向量）。传统的神经网络都是采用全连接的方式，即输入层到隐藏层的神经元都是全部连接的，这样做将导致参数量巨大，使得网络训练耗时甚至难以训练，而 CNN 则通过<strong><code>局部连接</code></strong>、<strong><code>权值共享</code></strong>等方法避免这一困难，有趣的是，这些方法都是受到现代生物神经网络相关研究的启发（感兴趣可阅读以下部分）。</p>
-<img src="https://s2.ax1x.com/2019/11/25/MvUJ2T.md.png" alt="MvUJ2T.md.png" style="zoom:150%;" />
-
-
-<p>下面重点介绍下 CNN 中的<strong>局部连接 (Sparse Connectivity)</strong> 和<strong>权值共享 (Shared Weights)</strong> 方法，理解它们很重要。</p>
-<h3 id="局部连接与权值共享"><a href="#局部连接与权值共享" class="headerlink" title="局部连接与权值共享"></a>局部连接与权值共享</h3><p>下图是一个很经典的图示，左边是全连接，右边是局部连接。</p>
-<img src="https://s2.ax1x.com/2019/11/25/MvUUr4.jpg" alt="MvUUr4.jpg" style="zoom:150%;" />
-
-
-<p>对于一个 1000 × 1000 的输入图像而言，如果下一个隐藏层的神经元数目为 10^6 个，采用全连接则有 1000 × 1000 × 10^6 = 10^12 个权值参数，如此数目巨大的参数几乎难以训练；而采用局部连接，隐藏层的每个神经元仅与图像中 10 × 10 的局部图像相连接，那么此时的权值参数数量为 10 × 10 × 10^6 = 10^8，将直接减少 4 个数量级。</p>
-<p>尽管减少了几个数量级，但参数数量依然较多。能不能再进一步减少呢？能！方法就是<strong>权值共享</strong>。具体做法是，在局部连接中隐藏层的每一个神经元连接的是一个 10 × 10 的局部图像，因此有 10 × 10 个权值参数，<strong>将这 10 × 10 个权值参数共享给剩下的神经元，也就是说隐藏层中 10^6 个神经元的权值参数相同</strong>，那么此时不管隐藏层神经元的数目是多少，需要训练的参数就是这 <strong>10 × 10 个权值参数</strong>（也就是卷积核 (也称滤波器) 的大小），如下图。</p>
-<img src="https://s2.ax1x.com/2019/11/25/MvaNfP.jpg" alt="MvaNfP.jpg" style="zoom:150%;" />
-
-
-<p>这大概就是 CNN 的一个神奇之处，尽管只有这么少的参数，依旧有出色的性能。但是，这样仅提取了图像的一种特征，如果要多提取出一些特征，可以增加多个卷积核，不同的卷积核能够得到图像的不同映射下的特征，称之为<strong><code>Feature Map</code></strong>。如果有 100 个卷积核，最终的权值参数也仅为 100 × 100 = 10^4 个而已。另外，偏置参数也是共享的，同一种滤波器共享一个。</p>
-<p>卷积神经网络的核心思想是：局部感受野 (local field)，权值共享(shared filter)以及降采样(pooling)这三种思想结合起来，获得了某种程度的位移、尺度、形变不变性。</p>
-<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>下图是一个经典的 CNN 结构 —— <strong><code>LeNet-5</code></strong>。</p>
-<p><img src="https://s2.ax1x.com/2019/11/25/Mvadl8.png" alt="Mvadl8.png"></p>
-<p>可以看出，CNN 中主要有两种类型的网络层，分别是<strong>卷积层</strong>和<strong>池化 / 采样层 (Pooling)</strong>。卷积层的作用是提取图像的各种特征；池化层的作用是对原始特征信号进行抽象，从而大幅度减少训练参数，另外还可以减轻模型过拟合的程度。  </p>
-<h3 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h3><p>卷积层是卷积核在上一级输入层上通过逐一滑动窗口计算而得，<strong>卷积核中的每一个参数都相当于传统神经网络中的权值参数</strong>，与对应的局部像素相连接，将卷积核的各个参数与对应的局部像素值相乘之和，（通常还要再加上一个偏置参数），得到卷积层上的结果。如下图所示。</p>
-<p><img src="https://s2.ax1x.com/2019/11/25/MvaDmQ.png" alt="MvaDmQ.png"></p>
-<p>下面的动图能够更好地解释卷积过程：</p>
-<img src="https://s2.ax1x.com/2019/11/25/Mvarwj.gif" alt="Mvarwj.gif" style="zoom:200%;" />
-
-
-<h3 id="池化-采样层"><a href="#池化-采样层" class="headerlink" title="池化 / 采样层"></a>池化 / 采样层</h3><p>通过卷积层获得了图像的特征之后，理论上我们可以直接使用这些特征训练分类器（如 softmax），但是这样做将面临巨大的计算量的挑战，而且容易产生过拟合的现象。为了进一步降低网络训练参数及模型的过拟合程度，我们对卷积层进行<strong>池化 / 采样 (Pooling)</strong> 处理。池化 / 采样的方式通常有以下两种：</p>
-<ul>
-<li><strong>Max-Pooling</strong>: 选择 Pooling 窗口中的最大值作为采样值；</li>
-<li><strong>Mean-Pooling</strong>: 将 Pooling 窗口中的所有值相加取平均，以平均值作为采样值；</li>
-</ul>
-<p>如下图所示。</p>
-<p><img src="https://s2.ax1x.com/2019/11/25/Mvagf0.png" alt="Mvagf0.png"></p>
-<h3 id="LeNet-5-网络详解"><a href="#LeNet-5-网络详解" class="headerlink" title="LeNet-5 网络详解"></a>LeNet-5 网络详解</h3><p>以上较详细地介绍了 CNN 的网络结构和基本原理，下面是<strong><code>LeNet-5</code></strong>的结构详解。</p>
-<p><img src="https://s2.ax1x.com/2019/11/25/MvaWlT.png" alt="MvaWlT.png"></p>
-<p><img src="https://s2.ax1x.com/2019/11/25/MvahXF.png" alt="MvahXF.png"></p>
-<p><img src="https://s2.ax1x.com/2019/11/25/MvdaNR.png" alt="MvdaNR.png"></p>
-<p><img src="https://s2.ax1x.com/2019/11/25/Mvd5gf.png" alt="Mvd5gf.png"></p>
-<p><img src="https://s2.ax1x.com/2019/11/25/MvdjCq.png" alt="MvdjCq.png"></p>
-<blockquote>
-<p>C5是具有120个大小为5X5的卷积核的卷积层。每个单元连接到S4的所有16个特征图上的5X5邻域。这里，因为S4的特征图大小也是5X5，所以C5的输出大小是1X1。因此S4和C5之间是完全连接的。但仍将其标为卷积层，原因是如果LeNet-5输入变得更大而其结构保持不变，则其输出大小会大于1X1，即不是完全连接的层了。</p>
-</blockquote>
-<p><img src="https://s2.ax1x.com/2019/11/25/Mvdx2V.png" alt="Mvdx2V.png"></p>
-<p><a href="https://zhuanlan.zhihu.com/p/58188998" target="_blank" rel="noopener">为什么LeNet5倒数第二个全连接层维度为84？ - 知乎</a></p>
-<p><img src="https://s2.ax1x.com/2019/11/25/MvwpKU.png" alt="MvwpKU.png"></p>
-<p>一个数字识别效果如下图所示：  </p>
-<img src="https://s2.ax1x.com/2019/11/26/MzT4DU.png" alt="MzT4DU.png" style="zoom:200%;" />
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
   
   
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zebin.wang/2019/11/23/%E5%8A%A8%E6%80%81%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王泽斌">
-      <meta itemprop="description" content="A PUKer of CS">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zebin's Thinking">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/23/%E5%8A%A8%E6%80%81%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/" class="post-title-link" itemprop="url">动态二维数组的初始化</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-11-23 16:00:36 / 修改时间：19:43:11" itemprop="dateCreated datePublished" datetime="2019-11-23T16:00:36+08:00">2019-11-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>动态数组（一维）因为其首地址与申请的内存是连续的，所以初始化与静态数组的初始化无异：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* <span class="built_in">array</span> = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line"><span class="built_in">memset</span>(<span class="built_in">array</span>, <span class="number">0</span>, length*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
-
-<p>对于动态二维数组：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** matrix = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)&#123;</span><br><span class="line">  matrix[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>matrix</code>指向了<code>matrix[i]</code>的首地址，<code>matrix[i]</code>又指向了各自行的首地址，每一行元素在内存中是连续的，但每一行之间并不是连续的，因此对二维动态数组，用  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(matrix, <span class="number">0</span>, length*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
-
-<p>并不适用，因为<code>memset()</code>函数是从<code>matrix</code>的首地址开始，长度为<code>sizeof(matrix)</code>个内存单元全部初始化，所以作用在二维动态数组上会报出EXC_BAD_ACCESS(访问释放掉的内存)的错误。  </p>
-<p>二维动态数组里每一行都是连续的，因此可以在对每一行开辟内存空间的同时进行初始化，如下：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** matrix = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)&#123;</span><br><span class="line">  matrix[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">  <span class="built_in">memset</span>(matrix[i],<span class="number">0</span>,col*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>切记<code>memset()</code>函数中不要使用<code>sizeof(matrix[i])</code>，因为<code>sizeof()</code>函数在编译时就进行计算，所以<strong><code>sizeof()</code>不能返回动态分配的内存空间的大小</strong>。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://zebin.wang/2019/09/02/%E6%9C%89%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -410,8 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/02/%E6%9C%89%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">有环单链表</a>
+          有环单链表
         </h1>
 
         <div class="post-meta">
@@ -459,7 +246,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="kernel：快慢指针"><a href="#kernel：快慢指针" class="headerlink" title="kernel：快慢指针"></a>kernel：快慢指针</h1><h2 id="判断是否有环"><a href="#判断是否有环" class="headerlink" title="判断是否有环"></a>判断是否有环</h2><ul>
+        <h1 id="kernel：快慢指针"><a href="#kernel：快慢指针" class="headerlink" title="kernel：快慢指针"></a>kernel：快慢指针</h1><h2 id="判断是否有环"><a href="#判断是否有环" class="headerlink" title="判断是否有环"></a>判断是否有环</h2><ul>
 <li>快指针一次跳两步，满指针一次跳一步，有环就意味着总会相遇，即当slow=fast时意味有环</li>
 </ul>
 <h2 id="找出环的入点"><a href="#找出环的入点" class="headerlink" title="找出环的入点"></a>找出环的入点</h2><ul>
@@ -474,112 +261,42 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.github.wzb.Linked;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MySingleListImpl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> data;</span><br><span class="line">        <span class="keyword">private</span> Node next;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.data = data;</span><br><span class="line">            <span class="keyword">this</span>.next = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Node head;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MySingleListImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.head = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//头插法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Node node = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.head = node;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            node.next = <span class="keyword">this</span>.head;</span><br><span class="line">            <span class="keyword">this</span>.head = node;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//尾插法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Node node = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.head = node;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            Node cur = <span class="keyword">this</span>.head;</span><br><span class="line">            <span class="keyword">while</span> (cur.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur.next = node;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//打印链表</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Node cur = <span class="keyword">this</span>.head;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.print(cur.data + <span class="string">" "</span>);</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建一个有环的链表</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createLoop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Node cur = <span class="keyword">this</span>.head;</span><br><span class="line">        <span class="keyword">while</span> (cur.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        cur.next = <span class="keyword">this</span>.head.next.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//寻找环的入口点</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">detectCycle</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Node fast = <span class="keyword">this</span>.head;</span><br><span class="line">        Node slow = <span class="keyword">this</span>.head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//循环退出两种情况:</span></span><br><span class="line">        <span class="comment">//1.fast.next == null(找到单链表结尾也没有找到环); 2.fast == slow(有环)</span></span><br><span class="line">        <span class="keyword">while</span> (fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (fast == slow) &#123;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//链表没有环的情况</span></span><br><span class="line">        <span class="keyword">if</span> (fast.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//链表有环</span></span><br><span class="line">        slow = <span class="keyword">this</span>.head;</span><br><span class="line">        <span class="keyword">while</span> (fast != slow) &#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zebin.wang/2018/10/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王泽斌">
-      <meta itemprop="description" content="A PUKer of CS">
-    </span>
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2018/10/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/" rel="next" title="搭建博客有感">
+                  <i class="fa fa-chevron-left"></i> 搭建博客有感
+                </a>
+            </div>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zebin's Thinking">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%9C%89%E6%84%9F/" class="post-title-link" itemprop="url">搭建博客有感</a>
-        </h1>
+            <span class="post-nav-divider"></span>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-10-19 02:38:52" itemprop="dateCreated datePublished" datetime="2018-10-19T02:38:52+08:00">2018-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-21 19:02:35" itemprop="dateModified" datetime="2019-11-21T19:02:35+08:00">2019-11-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/Life/" itemprop="url" rel="index">
-                    <span itemprop="name">Life</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>现在是北京时间2018年10月19日02:39:30，经历了三个月磨磨蹭蹭的施工，终于开始使用了，从暑假心血来潮想建立一个独立的个人博客，到后来因为很多事情而暂时搁置了这件事，时至今日终于下定决定在自己的一亩三分田里写点东西了，这中间大约跨越了一个季度，从酷暑八月的家里，到深秋的今天。以后做事不可以再这么拖拉了。</p>
-<p>回想一下，为了搭这个博客，还是学到了很多东西的，从当初对git是一窍不通，到现在的一知半解，虽然中间踩了无数的坑，但这就是学习和修行的意义所在吧。</p>
-<p>研究生的阶段，终于有了有太多东西要学的想法，为时不晚，一步一步来吧，起码有这样的紧迫感确实是一件好事情。以后每天都要有所收获，希望每天都可以写一篇日记，不管是课堂笔记、人生心得亦或是技术分享。</p>
-<p>哎，十月中下旬的北京，俨然就是一幅初冬的模样，难怪在北京读了四年大学的室友说：“北京没有秋天”。</p>
-<p>先这样吧。</p>
-<p>澤</p>
-<p>贰零壹捌 - 深秋</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/23/%E5%8A%A8%E6%80%81%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="prev" title="动态二维数组的初始化">
+                  动态二维数组的初始化 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -608,6 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#kernel：快慢指针"><span class="nav-number">1.</span> <span class="nav-text">kernel：快慢指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否有环"><span class="nav-number">1.1.</span> <span class="nav-text">判断是否有环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#找出环的入点"><span class="nav-number">1.2.</span> <span class="nav-text">找出环的入点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求环长"><span class="nav-number">1.3.</span> <span class="nav-text">求环长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求单链表长度"><span class="nav-number">1.4.</span> <span class="nav-text">求单链表长度</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

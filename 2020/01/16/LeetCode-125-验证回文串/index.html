@@ -10,7 +10,7 @@
   
   <title>
     
-      动态二维数组的初始化 | Zebin&#39;s Thoughts
+      LeetCode_125 验证回文串 | Zebin&#39;s Thoughts
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -140,8 +140,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>动态二维数组的初始化</h2>
-  <p class="post-date">2019-11-23</p>
+  <h2>LeetCode_125 验证回文串</h2>
+  <p class="post-date">2020-01-16</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -149,30 +149,41 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>动态数组（一维）因为其首地址与申请的内存是连续的，所以初始化与静态数组的初始化无异：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* <span class="built_in">array</span> = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line"><span class="built_in">memset</span>(<span class="built_in">array</span>, <span class="number">0</span>, length*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
+    <section class="markdown-content"><h3 id="125-验证回文串"><a href="#125-验证回文串" class="headerlink" title="125. 验证回文串"></a><a href="https://leetcode-cn.com/problems/valid-palindrome/" target="_blank" rel="noopener">125. 验证回文串</a></h3><p>Difficulty: <strong>简单</strong></p>
+<p>给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。</p>
+<p><strong>说明：</strong>本题中，我们将空字符串定义为有效的回文串。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;A man, a plan, a canal: Panama&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
 
-<p>对于动态二维数组：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** matrix = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)&#123;</span><br><span class="line">  matrix[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>matrix</code>指向了<code>matrix[i]</code>的首地址，<code>matrix[i]</code>又指向了各自行的首地址，每一行元素在内存中是连续的，但每一行之间并不是连续的，因此对二维动态数组，用  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(matrix, <span class="number">0</span>, length*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
-
-<p>并不适用，因为<code>memset()</code>函数是从<code>matrix</code>的首地址开始，长度为<code>sizeof(matrix)</code>个内存单元全部初始化，所以作用在二维动态数组上会报出EXC_BAD_ACCESS(访问释放掉的内存)的错误。  </p>
-<p>二维动态数组里每一行都是连续的，因此可以在对每一行开辟内存空间的同时进行初始化，如下：  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** matrix = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)&#123;</span><br><span class="line">  matrix[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">  <span class="built_in">memset</span>(matrix[i],<span class="number">0</span>,col*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;race a car&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
 
 
-
-<p>切记<code>memset()</code>函数中不要使用<code>sizeof(matrix[i])</code>，因为<code>sizeof()</code>函数在编译时就进行计算，所以<strong><code>sizeof()</code>不能返回动态分配的内存空间的大小</strong>。</p>
+<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><p>Language: <strong>Java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">​<span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">// time O(n), space O(1)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果为空，则为回文串</span></span><br><span class="line">        <span class="keyword">if</span> (s.isEmpty()) &#123;</span><br><span class="line">        	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> head = <span class="number">0</span>, tail = s.length() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> cHead, cTail;</span><br><span class="line">        <span class="keyword">while</span> (head &lt; tail) &#123;</span><br><span class="line">        	cHead = s.charAt(head);</span><br><span class="line">        	cTail = s.charAt(tail);</span><br><span class="line">        	<span class="keyword">if</span> (!Character.isLetterOrDigit(cHead)) &#123;</span><br><span class="line">        		++head;</span><br><span class="line">        	&#125; </span><br><span class="line">            <span class="comment">// 此处的else很重要,如果这里没有else，那么这一步不执行就一定会执行下一步。</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!Character.isLetterOrDigit(cTail)) &#123;</span><br><span class="line">        		--tail;</span><br><span class="line">        	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        		<span class="keyword">if</span> (Character.toLowerCase(cHead) != Character.toLowerCase(cTail))</span><br><span class="line">        			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        		head++;</span><br><span class="line">        		tail--;</span><br><span class="line">        	&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h4><p>采用对撞指针，获取每个位置的字符，确定以下几个步骤：</p>
+<ol>
+<li>如果左指针指向的字符不为数字或字母，则跳过该字符</li>
+<li>如果右指针指向的字符不为数字或字母，则跳过该字符</li>
+<li>如果1、2<strong>均没有执行</strong>，则将两个字符都转换为小写后判断是否相等，如果不相等则直接返回<code>false</code></li>
+<li>如果没有返回false，则表示匹配成功，两个指针各向中间移动一位</li>
+</ol>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#C++" >
-    <span class="tag-code">C++</span>
+  <a href="/tags#LeetCode" >
+    <span class="tag-code">LeetCode</span>
+  </a>
+
+  <a href="/tags#String" >
+    <span class="tag-code">String</span>
+  </a>
+
+  <a href="/tags#对撞指针" >
+    <span class="tag-code">对撞指针</span>
   </a>
 
       </div>
@@ -183,20 +194,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2019/09/05/Java%E9%9B%86%E5%90%88%E4%B9%8BList/">
+      <a class="nav-left" href="/2020/01/15/LeetCode-80-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9-II/">
         <span class="nav-arrow">← </span>
         
-          Java集合之List
+          LeetCode_80 删除排序数组中的重复项 II
         
       </a>
     
-    
-      <a class="nav-right" href="/2019/11/25/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">
-        
-          卷积神经网络(CNN)学习笔记：网络结构基础
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -218,7 +222,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="nav">none</ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#125-验证回文串"><span class="toc-nav-text">125. 验证回文串</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Solution"><span class="toc-nav-text">Solution</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thoughts"><span class="toc-nav-text">Thoughts</span></a></li></ol></li></ol>
     
   </div>
 </aside>
@@ -228,7 +232,7 @@
 
 <script>
   (function () {
-    var url = 'https://zebin.wang/2019/11/23/动态二维数组的初始化/';
+    var url = 'https://zebin.wang/2020/01/16/LeetCode-125-验证回文串/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({

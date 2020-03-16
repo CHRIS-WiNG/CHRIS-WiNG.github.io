@@ -162,10 +162,10 @@
 <h3 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h3><p>字符串常量池是全局的，JVM 中独此一份，因此也称为全局字符串常量池。运行时常量池中的字符串字面量若是成员的，则在类的加载初始化阶段就使用到了字符串常量池；若是本地的，则在使用到的时候（执行此代码时）才会使用到字符串常量池。其实，“使用常量池”对应的字节码是一个 ldc 指令，在给 String 类型的引用赋值的时候会先执行这个指令，看常量池中是否存在这个字符串对象的引用，若有就直接返回这个引用，若没有，就在堆里创建这个字符串对象并在字符串常量池中记录下这个引用（jdk1.7)。String 类的 intern() 方法还可在运行期间把字符串放到字符串常量池中。JVM 中除了字符串常量池，8种基本数据类型中除了两种浮点类型剩余的6种基本数据类型的包装类，都使用了缓冲池技术，但是 Byte、Short、Integer、Long、Character 这5种整型的包装类也只是在对应值在 [-128,127] 时才会使用缓冲池，超出此范围仍然会去创建新的对象。其中：</p>
 <ul>
 <li>在 jdk1.6（含）之前也是方法区的一部分，并且其中存放的是字符串的实例；</li>
-<li>在 jdk1.7（含）之后是在堆内存之中，存储的是字符串对象的引用，字符串实例是在堆中；</li>
-<li>jdk1.8 已移除永久代，以元空间作为替换，字符串常量池是在本地内存当中，存储的也只是引用。</li>
+<li>在 jdk1.7（含）之后是在堆内存之中，可以存储的是字符串对象的实例和堆内存中字符串对象的引用</li>
+<li>jdk1.8 已移除永久代，以元空间作为替换，字符串常量池还是在堆内存当中。</li>
 </ul>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a><a href="https://blog.csdn.net/u011635492/article/details/81046174" target="_blank" rel="noopener">参考资料</a></h4></section>
+</section>
     <!-- Tags START -->
     
       <div class="tags">
@@ -215,7 +215,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#永久代和方法区的关系"><span class="toc-nav-text">永久代和方法区的关系</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#元空间"><span class="toc-nav-text">元空间</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Class文件常量池"><span class="toc-nav-text">Class文件常量池</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行时常量池"><span class="toc-nav-text">运行时常量池</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#字符串常量池"><span class="toc-nav-text">字符串常量池</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#永久代和方法区的关系"><span class="toc-nav-text">永久代和方法区的关系</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#元空间"><span class="toc-nav-text">元空间</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Class文件常量池"><span class="toc-nav-text">Class文件常量池</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行时常量池"><span class="toc-nav-text">运行时常量池</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#字符串常量池"><span class="toc-nav-text">字符串常量池</span></a></li></ol>
     
   </div>
 </aside>

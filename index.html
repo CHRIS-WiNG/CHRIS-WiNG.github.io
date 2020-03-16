@@ -143,6 +143,30 @@
   
     <article class="article-card">
       <h2 class="article-head">
+        <a href="/2020/01/17/Java%E6%96%B9%E6%B3%95%E5%8C%BA%E3%80%81%E6%B0%B8%E4%B9%85%E4%BB%A3%E3%80%81%E5%85%83%E7%A9%BA%E9%97%B4%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0/">Java方法区、永久代、元空间、常量池</a>
+      </h2>
+      <p class="article-date">2020年1月17日</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+  <a href="/tags#JVM" >
+    <span class="tag-code">JVM</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          永久代和方法区的关系 《Java虚拟机规范》只是规定了有方法区这么个概念和它的作用，并没有规定如何去实现它。那么，在不同的 JVM 上方法区的实现肯定是不同的了。 同时大多数用的JVM都是Sun公司的HotSpot。在HotSpot上把GC分代收集扩展至方法区，或者说使用永久代来实现方法区。 ...
+        
+      </div>
+      <a class="more" href="/2020/01/17/Java%E6%96%B9%E6%B3%95%E5%8C%BA%E3%80%81%E6%B0%B8%E4%B9%85%E4%BB%A3%E3%80%81%E5%85%83%E7%A9%BA%E9%97%B4%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2020/01/16/LeetCode-125-%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2/">LeetCode_125 验证回文串</a>
       </h2>
       <p class="article-date">2020年1月16日</p>
@@ -232,7 +256,7 @@ C++ 将二维数组存储为一维数组下图显示了大小为 M * N 的数组
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2020/01/10/JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/">JVM内存结构</a>
+        <a href="/2020/01/10/JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/">梳理JVM内存结构</a>
       </h2>
       <p class="article-date">2020年1月10日</p>
       
@@ -389,33 +413,6 @@ ArrayList和LinkedList类比数组和链表
         
       </div>
       <a class="more" href="/2019/09/03/Java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/02/%E6%9C%89%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8/">有环单链表</a>
-      </h2>
-      <p class="article-date">2019年9月2日</p>
-      
-        
-  <a href="/tags#LeetCode" >
-    <span class="tag-code">LeetCode</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          kernel：快慢指针判断是否有环
-快指针一次跳两步，满指针一次跳一步，有环就意味着总会相遇，即当slow=fast时意味有环
-
-找出环的入点
-当两指针相遇后令fast=head，然后fast和slow都每一次走一步，直到再次相遇，相遇点即为环的入点
-
-求环长
-环长即为从head到相遇点的距 ...
-        
-      </div>
-      <a class="more" href="/2019/09/02/%E6%9C%89%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8/">Read more</a>
     </article>
   
 

@@ -10,7 +10,7 @@
   
   <title>
     
-      JVM内存结构 | Zebin&#39;s Thoughts
+      梳理JVM内存结构 | Zebin&#39;s Thoughts
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -140,7 +140,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>JVM内存结构</h2>
+  <h2>梳理JVM内存结构</h2>
   <p class="post-date">2020-01-10</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -208,14 +208,17 @@
 <li>线程共享，整个 Java 虚拟机只有一个堆，所有的线程都访问同一个堆。而程序计数器、Java 虚拟机栈、本地方法栈都是一个线程对应一个。</li>
 <li>在虚拟机启动时创建。</li>
 <li>是垃圾回收的主要场所。</li>
-<li>进一步可分为：新生代(Eden区  From Survior  To Survivor)、老年代。</li>
+<li>进一步可分为：新生代(一个Eden区和两个Suvivor区)、老年代。<blockquote>
+<p>关于Eden、Survivor，Old Generation的讲述可以查阅<a href="http://swiftlet.net/archives/2759" target="_blank" rel="noopener">这篇文章</a></p>
+</blockquote>
+</li>
 </ul>
 <p>不同的区域存放不同生命周期的对象，这样可以根据不同的区域使用不同的垃圾回收算法，更具有针对性。</p>
 <p>堆的大小既可以固定也可以扩展，但对于主流的虚拟机，堆的大小是可扩展的，因此当线程请求分配内存，但堆已满，且内存已无法再扩展时，就抛出 OutOfMemoryError 异常。</p>
 <blockquote>
 <p>Java 堆所使用的内存不需要保证是连续的。而由于堆是被所有线程共享的，所以对它的访问需要注意同步问题，方法和对应的属性都需要保证一致性。</p>
 </blockquote>
-<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><h3 id="方法区的定义"><a href="#方法区的定义" class="headerlink" title="方法区的定义"></a>方法区的定义</h3><p>Java 虚拟机规范中定义方法区是堆的一个逻辑部分。方法区里存放着类的版本，字段，方法，接口和常量池。常量池里存储着字面量和符号引用。方法区存放以下信息：  </p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><h3 id="方法区的定义"><a href="#方法区的定义" class="headerlink" title="方法区的定义"></a>方法区的定义</h3><p>方法区是一种规范，《JVM规范》只是规定了有方法区这么个概念和它的作用，并没有规定如何去实现它。在不同的 JVM 上方法区的实现肯定是不同的了，大多数用的JVM都是Sun公司的HotSpot。<br>Java 虚拟机规范中定义<strong>方法区是堆的一个逻辑部分</strong>。方法区里存放着类的版本，字段，方法，接口和常量池，常量池里存储着字面量和符号引用。方法区存放以下信息：  </p>
 <ul>
 <li>已经被虚拟机加载的类信息：版本、字段、方法、接口、常量池等。</li>
 <li>常量池：<ul>
@@ -227,7 +230,10 @@
 </ul>
 <h3 id="方法区的特点"><a href="#方法区的特点" class="headerlink" title="方法区的特点"></a>方法区的特点</h3><ul>
 <li>线程共享。  方法区是堆的一个逻辑部分，因此和堆一样，都是线程共享的。整个虚拟机中只有一个方法区。</li>
-<li>永久代。  方法区中的信息一般需要长期存在，而且它又是堆的逻辑分区，因此用堆的划分方法，把方法区称为“永久代”。</li>
+<li>Java1.7之前在<code>HotSpot VM</code>中以<code>PermGen（永久代）</code>实现，Java8之后被使用本地内存的<code>Metaspace（元空间）</code>替代实现。<blockquote>
+<p>关于<code>PermGen</code>和<code>Metaspace</code>，可以看<a href="https://zebin.wang/2020/01/17/Java%E6%96%B9%E6%B3%95%E5%8C%BA%E3%80%81%E6%B0%B8%E4%B9%85%E4%BB%A3%E3%80%81%E5%85%83%E7%A9%BA%E9%97%B4%E3%80%81%E5%B8%B8%E9%87%8F%E6%B1%A0/">这篇文章</a></p>
+</blockquote>
+</li>
 <li>内存回收效率低。  方法区中的信息一般需要长期存在，回收一遍之后可能只有少量信息无效。主要回收目标是：对常量池的回收；对类型的卸载。</li>
 <li>Java 虚拟机规范对方法区的要求比较宽松。  和堆一样，允许固定大小，也允许动态扩展，还允许不实现垃圾回收。</li>
 <li>方法区分配内存可以不连续，可以动态扩展。</li>

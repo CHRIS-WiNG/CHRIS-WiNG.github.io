@@ -149,26 +149,25 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h3 id="433-最小基因变化"><a href="#433-最小基因变化" class="headerlink" title="433. 最小基因变化"></a><a href="https://leetcode-cn.com/problems/minimum-genetic-mutation/" target="_blank" rel="noopener">433. 最小基因变化</a></h3><p>Difficulty: <strong>中等</strong></p>
-<p>一条基因序列由一个带有8个字符的字符串表示，其中每个字符都属于 <code>&quot;A&quot;</code>, <code>&quot;C&quot;</code>, <code>&quot;G&quot;</code>, <code>&quot;T&quot;</code>中的任意一个。</p>
-<p>假设我们要调查一个基因序列的变化。<strong>一次</strong>基因变化意味着这个基因序列中的<strong>一个</strong>字符发生了变化。</p>
-<p>例如，基因序列由<code>&quot;AACCGGTT&quot;</code> 变化至 <code>&quot;AACCGGTA&quot;</code>即发生了一次基因变化。</p>
-<p>与此同时，每一次基因变化的结果，都需要是一个合法的基因串，即该结果属于一个基因库。</p>
-<p>现在给定3个参数 — start, end, bank，分别代表起始基因序列，目标基因序列及基因库，请找出能够使起始基因序列变化为目标基因序列所需的最少变化次数。如果无法实现目标变化，请返回 -1。</p>
-<p><strong>注意:</strong></p>
+    <section class="markdown-content"><h3 id="127-单词接龙"><a href="#127-单词接龙" class="headerlink" title="127. 单词接龙"></a><a href="https://leetcode-cn.com/problems/word-ladder/" target="_blank" rel="noopener">127. 单词接龙</a></h3><p>Difficulty: <strong>中等</strong></p>
+<p>给定两个单词（<em>beginWord _和 _endWord_）和一个字典，找到从 _beginWord</em> 到 <em>endWord</em> 的最短转换序列的长度。转换需遵循如下规则：</p>
 <ol>
-<li>起始基因序列默认是合法的，但是它并不一定会出现在基因库中。</li>
-<li>所有的目标基因序列必须是合法的。</li>
-<li>假定起始基因序列与目标基因序列是不一样的。</li>
+<li>每次转换只能改变一个字母。</li>
+<li>转换过程中的中间单词必须是字典中的单词。</li>
 </ol>
+<p><strong>说明:</strong></p>
+<ul>
+<li>如果不存在这样的转换序列，返回 0。</li>
+<li>所有单词具有相同的长度。</li>
+<li>所有单词只由小写字母组成。</li>
+<li>字典中不存在重复的单词。</li>
+<li>你可以假设 <em>beginWord</em> 和 <em>endWord</em> 是非空的，且二者不相同。</li>
+</ul>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start: &quot;AACCGGTT&quot;</span><br><span class="line">end:   &quot;AACCGGTA&quot;</span><br><span class="line">bank: [&quot;AACCGGTA&quot;]</span><br><span class="line"></span><br><span class="line">返回值: 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">beginWord &#x3D; &quot;hit&quot;,</span><br><span class="line">endWord &#x3D; &quot;cog&quot;,</span><br><span class="line">wordList &#x3D; [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</span><br><span class="line"></span><br><span class="line">输出: 5</span><br><span class="line"></span><br><span class="line">解释: 一个最短转换序列是 &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;,</span><br><span class="line">     返回它的长度 5。</span><br></pre></td></tr></table></figure>
 
 <p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start: &quot;AACCGGTT&quot;</span><br><span class="line">end:   &quot;AAACGGTA&quot;</span><br><span class="line">bank: [&quot;AACCGGTA&quot;, &quot;AACCGCTA&quot;, &quot;AAACGGTA&quot;]</span><br><span class="line"></span><br><span class="line">返回值: 2</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start: &quot;AAAAACCC&quot;</span><br><span class="line">end:   &quot;AACCCCCC&quot;</span><br><span class="line">bank: [&quot;AAAACCCC&quot;, &quot;AAACCCCC&quot;, &quot;AACCCCCC&quot;]</span><br><span class="line"></span><br><span class="line">返回值: 3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">beginWord &#x3D; &quot;hit&quot;</span><br><span class="line">endWord &#x3D; &quot;cog&quot;</span><br><span class="line">wordList &#x3D; [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]</span><br><span class="line"></span><br><span class="line">输出: 0</span><br><span class="line"></span><br><span class="line">解释: endWord &quot;cog&quot; 不在字典中，所以无法进行转换。</span><br></pre></td></tr></table></figure>
 
 
 <h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><p>Language: <strong>Java</strong></p>
@@ -190,6 +189,10 @@
         
   <a href="/tags#LeetCode" >
     <span class="tag-code">LeetCode</span>
+  </a>
+
+  <a href="/tags#BFS" >
+    <span class="tag-code">BFS</span>
   </a>
 
       </div>
@@ -228,7 +231,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#433-最小基因变化"><span class="toc-nav-text">433. 最小基因变化</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Solution"><span class="toc-nav-text">Solution</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#思路1：单向BFS-（1512ms）"><span class="toc-nav-text">思路1：单向BFS （1512ms）</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#思路-2：双端BFS-（132ms）"><span class="toc-nav-text">思路 2：双端BFS （132ms）</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#思路3：优化比较策略（36ms）"><span class="toc-nav-text">思路3：优化比较策略（36ms）</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#127-单词接龙"><span class="toc-nav-text">127. 单词接龙</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Solution"><span class="toc-nav-text">Solution</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#思路1：单向BFS-（1512ms）"><span class="toc-nav-text">思路1：单向BFS （1512ms）</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#思路-2：双端BFS-（132ms）"><span class="toc-nav-text">思路 2：双端BFS （132ms）</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#思路3：优化比较策略（36ms）"><span class="toc-nav-text">思路3：优化比较策略（36ms）</span></a></li></ol></li></ol></li></ol>
     
   </div>
 </aside>

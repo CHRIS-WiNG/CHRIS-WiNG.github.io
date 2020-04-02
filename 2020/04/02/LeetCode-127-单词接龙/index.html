@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Coder">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      LeetCode_127 单词接龙 | Zebin&#39;s Thoughts
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Zebin's Thoughts</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>LeetCode_127 单词接龙</h2>
+  <p class="post-date">2020-04-02</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="433-最小基因变化"><a href="#433-最小基因变化" class="headerlink" title="433. 最小基因变化"></a><a href="https://leetcode-cn.com/problems/minimum-genetic-mutation/" target="_blank" rel="noopener">433. 最小基因变化</a></h3><p>Difficulty: <strong>中等</strong></p>
+<p>一条基因序列由一个带有8个字符的字符串表示，其中每个字符都属于 <code>&quot;A&quot;</code>, <code>&quot;C&quot;</code>, <code>&quot;G&quot;</code>, <code>&quot;T&quot;</code>中的任意一个。</p>
+<p>假设我们要调查一个基因序列的变化。<strong>一次</strong>基因变化意味着这个基因序列中的<strong>一个</strong>字符发生了变化。</p>
+<p>例如，基因序列由<code>&quot;AACCGGTT&quot;</code> 变化至 <code>&quot;AACCGGTA&quot;</code>即发生了一次基因变化。</p>
+<p>与此同时，每一次基因变化的结果，都需要是一个合法的基因串，即该结果属于一个基因库。</p>
+<p>现在给定3个参数 — start, end, bank，分别代表起始基因序列，目标基因序列及基因库，请找出能够使起始基因序列变化为目标基因序列所需的最少变化次数。如果无法实现目标变化，请返回 -1。</p>
+<p><strong>注意:</strong></p>
+<ol>
+<li>起始基因序列默认是合法的，但是它并不一定会出现在基因库中。</li>
+<li>所有的目标基因序列必须是合法的。</li>
+<li>假定起始基因序列与目标基因序列是不一样的。</li>
+</ol>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start: &quot;AACCGGTT&quot;</span><br><span class="line">end:   &quot;AACCGGTA&quot;</span><br><span class="line">bank: [&quot;AACCGGTA&quot;]</span><br><span class="line"></span><br><span class="line">返回值: 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start: &quot;AACCGGTT&quot;</span><br><span class="line">end:   &quot;AAACGGTA&quot;</span><br><span class="line">bank: [&quot;AACCGGTA&quot;, &quot;AACCGCTA&quot;, &quot;AAACGGTA&quot;]</span><br><span class="line"></span><br><span class="line">返回值: 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start: &quot;AAAAACCC&quot;</span><br><span class="line">end:   &quot;AACCCCCC&quot;</span><br><span class="line">bank: [&quot;AAAACCCC&quot;, &quot;AAACCCCC&quot;, &quot;AACCCCCC&quot;]</span><br><span class="line"></span><br><span class="line">返回值: 3</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><p>Language: <strong>Java</strong></p>
+<h5 id="思路1：单向BFS-（1512ms）"><a href="#思路1：单向BFS-（1512ms）" class="headerlink" title="思路1：单向BFS （1512ms）"></a>思路1：单向BFS （1512ms）</h5><p>以单词每次只能变化1个字母为条件，构造出单词变化图，通过每次都找到下一层元素（和当前元素只有一个字母不同的元素）来实现BFS。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">​<span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(String beginWord, String endWord, List&lt;String&gt; wordList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!wordList.contains(endWord)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Set&lt;String&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Queue&lt;String&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        visited.add(beginWord);</span><br><span class="line">        queue.offer(beginWord);</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> size = queue.size();</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">                String start = queue.poll();</span><br><span class="line">                <span class="keyword">for</span> (String s : wordList) &#123;</span><br><span class="line">                    <span class="comment">// 访问过即跳过</span></span><br><span class="line">                    <span class="keyword">if</span>(visited.contains(s)) &#123;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// 不匹配即跳过</span></span><br><span class="line">                    <span class="keyword">if</span> (!canMatched(start, s)) &#123;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// 匹配到最后一个就直接返回</span></span><br><span class="line">                    <span class="keyword">if</span> (s.equals(endWord)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> count + <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// 添加到下一层的遍历元素中</span></span><br><span class="line">                    visited.add(s);</span><br><span class="line">                    queue.offer(s);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">canMatched</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s1.length() != s2.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s1.length(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s1.charAt(i) != s2.charAt(i)) &#123;</span><br><span class="line">                ++count;</span><br><span class="line">                <span class="keyword">if</span> (count &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="思路-2：双端BFS-（132ms）"><a href="#思路-2：双端BFS-（132ms）" class="headerlink" title="思路 2：双端BFS （132ms）"></a>思路 2：双端BFS （132ms）</h5><p>通过单边BFS可以简单实现算法，如果我们还想提高检索效率，可以通过双边BFS来实现。这是因为单边BFS搜索起来就像一颗N叉树，越到底层，队列中元素越多，而正确的<code>endWord</code>只有一个，如果采用双边BFS，可以在一定程度上减少比较的次数；<strong>此外</strong>，我们还可以每比较完一层计算下一层的时候，选择<strong>下一层中元素较少</strong>的一端进行遍历，这样可以使算法更具效率 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(String beginWord, String endWord, List&lt;String&gt; wordList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> end = wordList.indexOf(endWord);</span><br><span class="line">        <span class="keyword">if</span> (end == -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        wordList.add(beginWord);</span><br><span class="line">        <span class="keyword">int</span> start = wordList.size() - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        Set&lt;Integer&gt; visited1 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; visited2 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Queue&lt;Integer&gt; queue1 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        Queue&lt;Integer&gt; queue2 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        visited1.add(start);</span><br><span class="line">        visited2.add(end);</span><br><span class="line">        queue1.offer(start);</span><br><span class="line">        queue2.offer(end);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!queue1.isEmpty() &amp;&amp; !queue2.isEmpty()) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (queue2.size() &lt; queue1.size()) &#123;</span><br><span class="line">                Set&lt;Integer&gt; tempS = visited1;</span><br><span class="line">                visited1 = visited2;</span><br><span class="line">                visited2 = tempS;</span><br><span class="line"></span><br><span class="line">                Queue&lt;Integer&gt; tempQ = queue1;</span><br><span class="line">                queue1 = queue2;</span><br><span class="line">                queue2 = tempQ;</span><br><span class="line">            &#125;</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">int</span> size = queue1.size();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">                String s = wordList.get(queue1.poll());</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; wordList.size(); ++j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (visited1.contains(j)) &#123;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (!canConvert(s, wordList.get(j))) &#123;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (visited2.contains(j)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> count + <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    visited1.add(j);</span><br><span class="line">                    queue1.offer(j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canConvert</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s1.length(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s1.charAt(i) != s2.charAt(i)) &#123;</span><br><span class="line">                ++count;</span><br><span class="line">                <span class="keyword">if</span> (count &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="思路3：优化比较策略（36ms）"><a href="#思路3：优化比较策略（36ms）" class="headerlink" title="思路3：优化比较策略（36ms）"></a>思路3：优化比较策略（36ms）</h5><p>在前两个思路中我们都是从无向图的遍历策略入手，仔细想想其实还可以从单词比较的策略入手，现在的比较策略是：</p>
+<ul>
+<li>对每一层需要检测的每一个结点，都去和图中所有的结点进行匹配，把所有匹配到的节点入队，这种策略的时间复杂度和图中的结点数有关，适合wordList中元素个数不多的情况，如果元素个数极多，那这种策略的时间复杂度就很恐怖。<br>思考单词特性：因为单词的长度普遍都在十以内，长度不长，并且每个字母只有26种可能，所以换一个角度思考问题：</li>
+<li>所以如果我们想探测词典中 一个单词匹配的单词的话，可以去创造出它所有能匹配的单词，并拿这个单词去判断是否是WordList中的单词，<strong>这里有一个非常重要的操作！！如果我们去遍历List的话，那么相当于南辕北辙，因为还是需要把List中的单词全部遍历一遍，这里我们创建一个AllWordSet来存放词典中的所有单词，利用哈希的特性来快速检测单词是否存在，相当于快速的把创造出的单词和set取个交集</strong>，在基于选择较短边的双端BFS基础上，配合这种策略，效率可以极大提升。</li>
+<li>这个思想实际上是把匹配单词的候选集从<strong>词典集</strong>切换到了 <strong>单词创造的单词的集合（<em>可能集</em>）</strong>，比较这两个候选集，词典集就只和它的容量有关，也就是单词越多，时间复杂度越高；而<em>可能集<em>是和单词长度有关，单词越长，</em>可能集</em> 的时间复杂度越高；而这里由于单词的长度普遍较短，所以使用<em>可能集</em>就会让这道题的时间消耗大大减少。如果这道题的数据是长度比较长的字符串，那使用原始的词典集就要比<em>可能集</em>效率高得多。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(String beginWord, String endWord, List&lt;String&gt; wordList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> end = wordList.indexOf(endWord);</span><br><span class="line">        <span class="keyword">if</span> (end == -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        wordList.add(beginWord);</span><br><span class="line"></span><br><span class="line">        Set&lt;String&gt; visited1 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Set&lt;String&gt; visited2 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Queue&lt;String&gt; queue1 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        Queue&lt;String&gt; queue2 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        visited1.add(beginWord);</span><br><span class="line">        visited2.add(endWord);</span><br><span class="line">        queue1.offer(beginWord);</span><br><span class="line">        queue2.offer(endWord);</span><br><span class="line">        <span class="comment">// 存放wordList所有元素的集合，用于快速判断创造出的单词是否在wordList中</span></span><br><span class="line">        Set&lt;String&gt; allWords = <span class="keyword">new</span> HashSet&lt;&gt;(wordList);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!queue1.isEmpty() &amp;&amp; !queue2.isEmpty()) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (queue2.size() &lt; queue1.size()) &#123;</span><br><span class="line">                Set&lt;String&gt; tempS = visited1;</span><br><span class="line">                visited1 = visited2;</span><br><span class="line">                visited2 = tempS;</span><br><span class="line"></span><br><span class="line">                Queue&lt;String&gt; tempQ = queue1;</span><br><span class="line">                queue1 = queue2;</span><br><span class="line">                queue2 = tempQ;</span><br><span class="line">            &#125;</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">int</span> size = queue1.size();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">                String s = queue1.poll();</span><br><span class="line">                <span class="keyword">char</span>[] chars = s.toCharArray();</span><br><span class="line">                <span class="comment">// 对当前单词的每一位进行26种修改，创造出chars.length * 26种单词</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; chars.length; ++j) &#123;</span><br><span class="line">                    <span class="keyword">char</span> c0 = chars[j];</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">char</span> c = <span class="string">'a'</span>; c &lt;= <span class="string">'z'</span>; ++c) &#123;</span><br><span class="line">                        chars[j] = c;</span><br><span class="line">                        String temp = String.valueOf(chars);</span><br><span class="line">                        <span class="keyword">if</span> (visited1.contains(temp))</span><br><span class="line">                            <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> (visited2.contains(temp))</span><br><span class="line">                            <span class="keyword">return</span> count + <span class="number">1</span>;</span><br><span class="line">                        <span class="comment">// 用Set来判断单词是否在词典中</span></span><br><span class="line">                        <span class="keyword">if</span> (allWords.contains(temp)) &#123;</span><br><span class="line">                            visited1.add(temp);</span><br><span class="line">                            queue1.add(temp);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// 字母复位</span></span><br><span class="line">                    chars[j] = c0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#LeetCode" >
+    <span class="tag-code">LeetCode</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/03/27/Maven%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+        <span class="nav-arrow">← </span>
+        
+          Maven使用总结
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#433-最小基因变化"><span class="toc-nav-text">433. 最小基因变化</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Solution"><span class="toc-nav-text">Solution</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#思路1：单向BFS-（1512ms）"><span class="toc-nav-text">思路1：单向BFS （1512ms）</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#思路-2：双端BFS-（132ms）"><span class="toc-nav-text">思路 2：双端BFS （132ms）</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#思路3：优化比较策略（36ms）"><span class="toc-nav-text">思路3：优化比较策略（36ms）</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://zebin.wang/2020/04/02/LeetCode-127-单词接龙/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
